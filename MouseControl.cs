@@ -6,10 +6,7 @@ public class MouseControl : MonoBehaviour
 {
     public float horizontalSpeed = 60.0f;
     public float verticalSpeed = 60.0f;
-
-    public float xCorrection = 2.0f;
-    public float yCorrection = 2.0f;
-
+    
     float mouseX;
     float mouseY;
 
@@ -24,6 +21,8 @@ public class MouseControl : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -52,7 +51,10 @@ public class MouseControl : MonoBehaviour
         transform.Rotate(Vector3.left * mouseY);
         playerBody.Rotate(Vector3.up * mouseX);
 
-      
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     private void ClampxAxisRotationToValue(float value)
