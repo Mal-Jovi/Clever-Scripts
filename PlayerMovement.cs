@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -29,7 +30,6 @@ public class PlayerMovement : MonoBehaviour
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
             moveDirection *= speed;
-
             currentJump = 0;
         }
 
@@ -46,8 +46,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
-
-        Debug.Log("Current Jump value: " + currentJump);
     }
     
 }
