@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
-public class mainMenuOLD : MonoBehaviour
+public class mainMenu : MonoBehaviour
 {
     public Image blackScreen;
 

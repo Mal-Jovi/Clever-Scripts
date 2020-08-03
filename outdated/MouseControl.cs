@@ -20,6 +20,9 @@ public class MouseControl : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        Cursor.lockState = CursorLockMode.Locked;
+
+        Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -47,6 +50,11 @@ public class MouseControl : MonoBehaviour
 
         transform.Rotate(Vector3.left * mouseY);
         playerBody.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+        }
     }
 
     private void ClampxAxisRotationToValue(float value)

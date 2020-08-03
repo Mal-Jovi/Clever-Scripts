@@ -30,7 +30,7 @@ public class colorChanger : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
 
-        //Debug.Log("true");
+        Debug.Log("true");
         mouseIn = true;
 
         buttonColor.normalColor = Color.red;
@@ -43,7 +43,7 @@ public class colorChanger : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
 
-        //Debug.Log("false");
+        Debug.Log("false");
         mouseIn = false;
 
         buttonColor.normalColor = Color.white;

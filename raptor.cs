@@ -10,6 +10,15 @@ public class raptor : MonoBehaviour
 
     private NavMeshAgent navComponent;
 
+    public playerDataGlobal currentplayerDataGlobal;
+
+    public float health = 100f;
+    public float damage = 10;
+    public float value = 10;
+    
+    public float attackCoolDownTime;
+    public float attackCoolDownTimeResetValue;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,30 +31,37 @@ public class raptor : MonoBehaviour
     {
         float dist = Vector3.Distance(target.position, transform.position);
 
-        if (target)
+        playerTracking();
+    }
+
+    public void playerTracking()
+    {
+        navComponent.SetDestination(target.position);
+
+        float distance = Vector3.Distance(target.transform.position, this.gameObject.transform.position);
+        //Debug.Log("the current distance between the player and raptor is: " + distance);
+        if (distance < 2)
         {
-            navComponent.SetDestination(target.position);
-        }
-        else
-        {
-            if(target = null)
+            if(attackCoolDownTime > 0)
             {
-                target = this.gameObject.GetComponent<Transform>();
+                attackCoolDownTime -= Time.deltaTime;
             }
             else
             {
-                target = GameObject.FindGameObjectWithTag("Player").transform;
+                attackCoolDownTime = attackCoolDownTimeResetValue;
+                currentplayerDataGlobal.takeDamage(damage);
             }
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    public void takeDamage(float amount)
     {
-        if(collision.gameObject.name == "Cone")
+        health -= amount;
+        if (health <= 1.0f)
         {
-           Debug.Log(collision.gameObject.name);
-           Destroy(gameObject);
+            currentplayerDataGlobal.earnMoney(value);
+            Destroy(gameObject);
         }
-        
     }
+
 }
